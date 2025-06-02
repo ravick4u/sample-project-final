@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "26c5397e-2163-4643-ae23-13c5eb581e25",
+		"_postman_id": "d5bf120f-516f-4b42-9060-66748034c084",
 		"name": "LendingPad-SampleProject",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "30292534"
+		"_exporter_id": "6022784"
 	},
 	"item": [
 		{
@@ -131,7 +131,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "//The exception \"PUT attempted on document 'users/1422740e-6426-4c46-8445-3f5274a62424' using a non current etag\" means that the record with the same ID already exists.\r\n{\r\n    \"name\": \"Mary\",\r\n    \"email\": \"mary@companya.com\",\r\n    \"type\": 1,\r\n    \"age\": 29,\r\n    \"annualSalary\": 80000,\r\n    \"tags\": []\r\n}",
+							"raw": "//The exception \"PUT attempted on document 'users/1422740e-6426-4c46-8445-3f5274a62424' using a non current etag\" means that the record with the same ID already exists.\r\n{\r\n    \"name\": \"Mary\",\r\n    \"email\": \"mary@companya.com\",\r\n    \"type\": 1,\r\n    \"age\": 29,\r\n    \"annualSalary\": 80000,\r\n    \"tags\": [\"tagname\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -278,11 +278,534 @@
 			"item": [
 				{
 					"name": "Products",
-					"item": []
+					"item": [
+						{
+							"name": "GetAllProducts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:49834/api/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product A",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Product A\",\r\n    \"price\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:49834/api/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product A",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Product A\",\r\n    \"price\": 20\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:49834/api/products/c5059da2-d006-4b62-8de6-449ef5841388",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"products",
+										"c5059da2-d006-4b62-8de6-449ef5841388"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product B",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Product B\",\r\n    \"price\": 20\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:49834/api/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product B",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Product B\",\r\n    \"price\": 40\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:49834/api/products/3254e585-ee59-4e63-b077-669a995c79cc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"products",
+										"3254e585-ee59-4e63-b077-669a995c79cc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProductA",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:49834/api/products/c5059da2-d006-4b62-8de6-449ef5841388",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"products",
+										"c5059da2-d006-4b62-8de6-449ef5841388"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProductB",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:49834/api/products/3254e585-ee59-4e63-b077-669a995c79cc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"products",
+										"3254e585-ee59-4e63-b077-669a995c79cc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteProductA",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:49834/api/products/c5059da2-d006-4b62-8de6-449ef5841388",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"products",
+										"c5059da2-d006-4b62-8de6-449ef5841388"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteProductB",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:49834/api/products/3254e585-ee59-4e63-b077-669a995c79cc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"products",
+										"3254e585-ee59-4e63-b077-669a995c79cc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProductAByName",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:49834/api/products/filter?name=Product A",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"products",
+										"filter"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Product A"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProductWithMinPrice",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:49834/api/products/filter?minPrice=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"products",
+										"filter"
+									],
+									"query": [
+										{
+											"key": "minPrice",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Orders",
-					"item": []
+					"item": [
+						{
+							"name": "GetAllOrders",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:49834/api/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Customer A",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customername\": \"Customer A\",\r\n    \"orderdate\": \"6/1/2025\",\r\n    \"productids\": [\"acade925-da38-464c-8c40-1d73cfae6771\",\"a1ac92dc-e85b-4714-99a3-4034c078d4f4\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:49834/api/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Customer B",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customername\": \"Customer B\",\r\n    \"orderdate\": \"6/2/2025\",\r\n    \"productids\": [\"770c15ab-2a42-4b1a-a8fa-ae8019b4a54f\",\"449c73d9-8507-45cb-bd16-2607f7289562\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:49834/api/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Customer A",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customername\": \"Customer C\",\r\n    \"orderdate\": \"6/1/2025\",\r\n    \"productids\": [\"acade925-da38-464c-8c40-1d73cfae6771\",\"a1ac92dc-e85b-4714-99a3-4034c078d4f4\",\"6c0343c1-0d37-44ca-96af-3edc9d474762\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:49834/api/orders/e93feb0e-6c21-49dc-8a4b-747b86bed11d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"orders",
+										"e93feb0e-6c21-49dc-8a4b-747b86bed11d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Customer B",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customername\": \"Customer D\",\r\n    \"orderdate\": \"6/2/2025\",\r\n    \"productids\": [\"770c15ab-2a42-4b1a-a8fa-ae8019b4a54f\",\"449c73d9-8507-45cb-bd16-2607f7289562\",\"7456881b-3022-4d2c-87ba-8782fdf51b61\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:49834/api/orders/177b23fd-6c64-4f12-ad13-f1894b27a39c",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"orders",
+										"177b23fd-6c64-4f12-ad13-f1894b27a39c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product A",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:49834/api/orders/1649864e-ad84-4f06-b69b-c35f534a73db",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"orders",
+										"1649864e-ad84-4f06-b69b-c35f534a73db"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product B",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:49834/api/orders/ad9e7e15-62b6-4a27-a6a1-c121b400b92c",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"orders",
+										"ad9e7e15-62b6-4a27-a6a1-c121b400b92c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetOrderByCustomerName",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:49834/api/orders/filter?customername=Customer C",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"orders",
+										"filter"
+									],
+									"query": [
+										{
+											"key": "customername",
+											"value": "Customer C"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetOrderByOrderDate",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:49834/api/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "49834",
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
