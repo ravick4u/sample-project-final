@@ -21,10 +21,10 @@ namespace Core.Services.Users
             _updateUserService = updateUserService;
         }
 
-        public User Create(Guid id, string name, string email, UserTypes type, decimal? annualSalary, IEnumerable<string> tags)
+        public User Create(Guid id, string name, string email, UserTypes type, int age, decimal? annualSalary, IEnumerable<string> tags)
         {
             var user = _userFactory.Create(id);
-            _updateUserService.Update(user, name, email, type, annualSalary, tags);
+            _updateUserService.Update(user, name, email, type, age, annualSalary, tags);
             _userRepository.Save(user);
             return user;
         }

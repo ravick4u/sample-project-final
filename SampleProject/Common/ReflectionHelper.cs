@@ -30,6 +30,20 @@ namespace Common
             {
                 throw new NullReferenceException($"Type '{entity.GetType().Name}' doesn't have a set property '{property.Name}'.");
             }
+
+            // Convert value to the property type if needed
+            if (value != null && propertyInfo.PropertyType != value.GetType())
+            {
+                if (propertyInfo.PropertyType == typeof(string))
+                {
+                    value = value.ToString();
+                }
+                else
+                {
+                    value = Convert.ChangeType(value, propertyInfo.PropertyType);
+                }
+            }
+
             propertyInfo.SetValue(entity, value);
         }
     }

@@ -4,6 +4,7 @@ using BusinessEntities;
 using Common;
 using Data.Indexes;
 using Raven.Client;
+using Raven.Client.Documents.Session;
 
 namespace Data.Repositories
 {
@@ -38,7 +39,7 @@ namespace Data.Repositories
                 {
                     hasFirstParameter = true;
                 }
-                query = query.Where($"Name:*{name}*");
+                query = query.WhereStartsWith("Name", name);
             }
 
             if (email != null)

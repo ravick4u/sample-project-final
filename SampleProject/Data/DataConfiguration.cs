@@ -1,11 +1,15 @@
-﻿using System.Reflection;
-using BusinessEntities;
+﻿using BusinessEntities;
 using Common;
-using Raven.Client;
-using Raven.Client.Document;
-using Raven.Client.Indexes;
-using Raven.Imports.Newtonsoft.Json;
+using Newtonsoft.Json;
+using Raven.Client.Documents;
+using Raven.Client.Documents.Conventions;
+using Raven.Client.Documents.Indexes;
+using Raven.Client.Documents.Session;
+using Raven.Client.Json.Serialization.NewtonsoftJson;
 using SimpleInjector;
+using System;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Data
 {
@@ -24,34 +28,37 @@ namespace Data
             container.RegisterSingleton(() => InitializeDocumentStore(assembly, createIndexes));
 
             container.Register(() =>
-                               {
-                                   var session = container.GetInstance<IDocumentStore>().OpenSession();
-                                   session.Advanced.MaxNumberOfRequestsPerSession = 5000;
-                                   return session;
-                               }, lifestyle);
+            {
+                var session = container.GetInstance<IDocumentStore>().OpenSession();
+                session.Advanced.MaxNumberOfRequestsPerSession = 5000;
+                return session;
+            }, lifestyle);
         }
 
         private static IDocumentStore InitializeDocumentStore(Assembly assembly, bool createIndexes)
         {
             var documentStore = new DocumentStore
-                                {
-                                    Url = "http://localhost:8080/",
-                                    DefaultDatabase = "SampleProject",
-                                    Conventions =
-                                    {
-                                        DefaultUseOptimisticConcurrency = true,
-                                        DocumentKeyGenerator = (dbname, commands, entity) => "",
-                                        SaveEnumsAsIntegers = true,
-                                        CustomizeJsonSerializer = serializer =>
-                                                                  {
-                                                                      serializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                                                                      serializer.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
-                                                                      serializer.DefaultValueHandling = DefaultValueHandling.Ignore;
-                                                                      serializer.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                                                                      serializer.NullValueHandling = NullValueHandling.Include;
-                                                                  },
-                                    }
-                                };
+            {
+                Urls = new[] { "http://localhost:8080" },
+                Database = "SampleProject",
+                Conventions = new DocumentConventions
+                {
+                    UseOptimisticConcurrency = true,
+
+                    SaveEnumsAsIntegers = true,
+                    Serialization = new NewtonsoftJsonSerializationConventions
+                    {
+                        CustomizeJsonSerializer = jsonSerializer =>
+                        {
+                            jsonSerializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                            jsonSerializer.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+                            jsonSerializer.DefaultValueHandling = DefaultValueHandling.Ignore;
+                            jsonSerializer.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+                            jsonSerializer.NullValueHandling = NullValueHandling.Include;
+                        }
+                    }
+                }
+            };
 
             documentStore.Initialize();
 
